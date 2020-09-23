@@ -8,7 +8,6 @@ package com.example.excel.foundation;
 public class Singleton {
 
     private static Singleton singleton = null;
-
     //私有构造器，不让外部通过new创建对象
     private Singleton(){}
     private static Singleton getInstance(){
@@ -17,6 +16,15 @@ public class Singleton {
             singleton = new Singleton();
         }
         return singleton;
+    }
+
+    public static void main(String[] args) {
+        Singleton singleton = Singleton.getInstance();
+        Singleton singleton1 = Singleton.getInstance();
+        if (singleton == singleton1){
+            System.out.println("1");
+        }
+
     }
 
 }
