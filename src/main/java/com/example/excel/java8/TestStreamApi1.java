@@ -23,10 +23,33 @@ public class TestStreamApi1 {
             new Student("白胡子", 50, 185),
             new Student("艾斯", 25, 183),
             new Student("雷利", 48, 176),
-            new Student("雷利", 48, 176),
+            new Student("雷利", 48, 175),
             new Student("雷利", 48, 176)
     );
     //中间操作
+
+    /*
+        排序
+        sorted() — 自然排序(Comparable) 按照默认的排序
+        sorted() — 定制排序(Comparator com)
+     */
+    @Test
+    public void test4(){
+        List<String> list = Arrays.asList("cc", "zz", "aa", "bb");
+        list.stream()
+                .sorted()
+                .forEach(System.out::println);
+        students.stream()
+               .sorted((t1, t2) -> {
+                   if (t1.getAge() == t2.getAge()){
+                       return Integer.compare(t1.getStature(), t2.getStature());
+                   }else {
+                       return -Integer.compare(t1.getAge(), t2.getAge());
+                   }
+               }).forEach(System.out::println);
+
+    }
+
     /*
         映射
         map — 接收Lambda，将元素转换成其他形式或提取信息，接收一个函数作为参数，该函数会被
