@@ -5,8 +5,28 @@ import org.junit.Test;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Set;
 
 public class TestLocalDateTime {
+
+    //6.ZonedDate   ZonedTime   ZonedDateTime
+    @Test
+    public void test8(){
+        LocalDateTime ldt = LocalDateTime.now(ZoneId.of("America/Sitka"));//该时区下的当前时间
+        System.out.println(ldt);
+
+        LocalDateTime ldt1 = LocalDateTime.now(ZoneId.of("Asia/Shanghai"));
+        ZonedDateTime ldt2 = ldt1.atZone(ZoneId.of("Asia/Shanghai"));
+        //  2020-11-08T18:07:04.727+  08:00(与UTC相差8小时)  [Asia/Shanghai]
+        System.out.println(ldt2);
+    }
+
+    @Test
+    public void test7(){    //所有时区
+        Set<String> set = ZoneId.getAvailableZoneIds();
+        set.forEach(System.out::println);
+    }
+
     //5.DateTimeFormatter 格式化时间和日期
     @Test
     public void test6(){
