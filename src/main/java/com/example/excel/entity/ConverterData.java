@@ -3,7 +3,7 @@ package com.example.excel.entity;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.format.DateTimeFormat;
 import com.alibaba.excel.annotation.format.NumberFormat;
-import com.example.excel.easyExcel.CustomStringStringConverter;
+import com.example.excel.easyExcel.read.CustomStringStringConverter;
 import lombok.Data;
 
 @Data

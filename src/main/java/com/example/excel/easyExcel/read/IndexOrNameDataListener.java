@@ -1,30 +1,29 @@
-package com.example.excel.easyExcel;
+package com.example.excel.easyExcel.read;
 
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
 import com.alibaba.fastjson.JSON;
 import com.example.excel.dao.DemoDAO;
-import com.example.excel.entity.DemoData;
+import com.example.excel.entity.IndexOrNameData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 // 有个很重要的点 DemoDataListener 不能被spring管理，要每次读取excel都要new,然后里面用到spring可以构造方法传进去
-public class DemoHeadDataListener extends AnalysisEventListener<DemoData> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(DemoDataListener.class);
+public class IndexOrNameDataListener extends AnalysisEventListener<IndexOrNameData> {
+    private static final Logger LOGGER = LoggerFactory.getLogger(IndexOrNameDataListener.class);
     /**
      * 每隔5条存储数据库，实际使用中可以3000条，然后清理list ，方便内存回收
      */
     private static final int BATCH_COUNT = 5;
-    List<DemoData> list = new ArrayList<DemoData>();
+    List<IndexOrNameData> list = new ArrayList<IndexOrNameData>();
     /**
      * 假设这个是一个DAO，当然有业务逻辑这个也可以是一个service。当然如果不用存储这个对象没用。
      */
     private DemoDAO demoDAO;
-    public DemoHeadDataListener() {
+    public IndexOrNameDataListener() {
         // 这里是demo，所以随便new一个。实际使用如果到了spring,请使用下面的有参构造函数
         demoDAO = new DemoDAO();
     }
@@ -33,7 +32,7 @@ public class DemoHeadDataListener extends AnalysisEventListener<DemoData> {
      *
      * @param demoDAO
      */
-    public DemoHeadDataListener(DemoDAO demoDAO) {
+    public IndexOrNameDataListener(DemoDAO demoDAO) {
         this.demoDAO = demoDAO;
     }
     /**
@@ -44,7 +43,7 @@ public class DemoHeadDataListener extends AnalysisEventListener<DemoData> {
      * @param context
      */
     @Override
-    public void invoke(DemoData data, AnalysisContext context) {
+    public void invoke(IndexOrNameData data, AnalysisContext context) {
         LOGGER.info("解析到一条数据:{}", JSON.toJSONString(data));
         list.add(data);
         // 达到BATCH_COUNT了，需要去存储一次数据库，防止数据几万条数据在内存，容易OOM
@@ -70,20 +69,8 @@ public class DemoHeadDataListener extends AnalysisEventListener<DemoData> {
      */
     private void saveData() {
         LOGGER.info("{}条数据，开始存储数据库！", list.size());
-        demoDAO.save(list);
+//        demoDAO.save(list);
         LOGGER.info("存储数据库成功！");
     }
 
-    /**
-     * 这里会一行行的返回头
-     *
-     * @param headMap
-     * @param context
-     */
-    @Override
-    public void invokeHeadMap(Map<Integer, String> headMap, AnalysisContext context) {
-        LOGGER.info("解析到一条头数据:{}", JSON.toJSONString(headMap));
-    }
-
 }
-

@@ -1,4 +1,4 @@
-package com.example.excel.easyExcel;
+package com.example.excel.easyExcel.read;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.annotation.ExcelProperty;
