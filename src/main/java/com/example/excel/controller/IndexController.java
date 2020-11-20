@@ -1,15 +1,19 @@
 package com.example.excel.controller;
 
-import com.example.excel.foundation.LoginRequired;
-import com.example.excel.foundation.MyLog;
+import com.example.excel.annotation.LoginRequired;
+import com.example.excel.annotation.MyLog;
+import com.example.excel.interceptor.requires.RequiresPermission;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/source")
 public class IndexController {
 
-    @GetMapping("/sourceA")
+    @RequestMapping("/sourceA")
+    @RequiresPermission
     public String sourceA(){
         return "你正在访问sourceA资源";
     }

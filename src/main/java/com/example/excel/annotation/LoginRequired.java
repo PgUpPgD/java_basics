@@ -1,4 +1,4 @@
-package com.example.excel.foundation;
+package com.example.excel.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface MyLog {
-
-    //和Aop使用实现日志打印
+public @interface LoginRequired {
+    String value() default "";
+    //和拦截器使用实现登录校验
 }

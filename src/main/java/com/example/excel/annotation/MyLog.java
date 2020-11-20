@@ -1,0 +1,13 @@
+package com.example.excel.annotation;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MyLog {
+    String value() default "";
+    //和Aop使用实现日志打印
+}

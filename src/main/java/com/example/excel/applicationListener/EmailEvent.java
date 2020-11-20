@@ -1,4 +1,4 @@
-package com.example.excel.ApplicationListener;
+package com.example.excel.applicationListener;
 
 import lombok.Data;
 import org.springframework.context.ApplicationEvent;
@@ -11,8 +11,5 @@ public class EmailEvent extends ApplicationEvent {
         super(source);
         this.address = address;
         this.text = text;
-    }
-    public EmailEvent(Object source) {
-        super(source);
     }
 }

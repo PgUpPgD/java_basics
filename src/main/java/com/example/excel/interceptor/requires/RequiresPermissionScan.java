@@ -1,4 +1,4 @@
-package com.example.excel.interceptor;
+package com.example.excel.interceptor.requires;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -14,12 +14,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author HK
- * @date 2020-09-03 9:20
+ *  ContextAware
+    实现了这个接口的bean，当spring容器初始化的时候，会自动的将ApplicationContext注入进来
+    并执行setApplicationContext方法
  */
 @Component
 public class RequiresPermissionScan implements ApplicationContextAware {
-
     private List<String> mPaths = new ArrayList<>();
 
     public List<String> paths() {
@@ -28,6 +28,7 @@ public class RequiresPermissionScan implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        System.out.println("ApplicationContextAware运行了");
         //类上被@RestController标记的
         Map<String, Object> restControllers = applicationContext.getBeansWithAnnotation(RestController.class);
         for (Map.Entry<String, Object> kv : restControllers.entrySet()) {
@@ -39,7 +40,7 @@ public class RequiresPermissionScan implements ApplicationContextAware {
                 continue;
             }
             //类上被@RequiresPermission注解标记的
-            com.example.excel.interceptor.RequiresPermission requiresPermission = AnnotationUtils.findAnnotation(clazz, com.example.excel.interceptor.RequiresPermission.class);
+            RequiresPermission requiresPermission = AnnotationUtils.findAnnotation(clazz, RequiresPermission.class);
             if (requiresPermission != null) {
                 String fullPath = "/" + rootRequestMapping.value()[0] + "/**";
                 mPaths.add(fullPath);
@@ -49,7 +50,7 @@ public class RequiresPermissionScan implements ApplicationContextAware {
 
             for (Method method : methods) {
                 //方法上被相关注解标记的
-                requiresPermission = AnnotationUtils.findAnnotation(method, com.example.excel.interceptor.RequiresPermission.class);
+                requiresPermission = AnnotationUtils.findAnnotation(method, RequiresPermission.class);
                 if (requiresPermission != null) {
                     RequestMapping requestMapping = AnnotationUtils.findAnnotation(method, RequestMapping.class);
                     if (requestMapping != null) {

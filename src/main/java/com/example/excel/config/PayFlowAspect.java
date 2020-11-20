@@ -2,27 +2,21 @@ package com.example.excel.config;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
-/**
- * @author HK
- * @date 2020-09-07 15:15
- */
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class PayFlowAspect {
 
-    private Logger logger = LoggerFactory.getLogger("pay_flow");
+    private Logger logger = LoggerFactory.getLogger("PayFlowAspect");
 
     @Pointcut("execution(public * com.example.excel.controller.*Controller.*(..))")
     public void log() {
