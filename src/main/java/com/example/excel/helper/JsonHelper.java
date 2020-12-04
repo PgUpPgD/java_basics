@@ -19,7 +19,7 @@ public class JsonHelper {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
-    public static <T> T json2Bean(String json, Class<T> clazz) {
+    public static <T> T json2Bean(String json, Class<T> clazz) throws Exception{
         try {
             return objectMapper.readValue(json, clazz);
         } catch (JsonProcessingException e) {
@@ -61,7 +61,7 @@ public class JsonHelper {
         return "{}";
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         User user = new User("id", "name", "userinfo");
         String str = JSON.toJSONString(user);
         User bean = json2Bean(str, User.class);

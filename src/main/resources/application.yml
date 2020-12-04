@@ -2,5 +2,28 @@
 server:
   port: 8080
 
+spring:
+  mvc:
+    view:
+      prefix: classpath:/templates/
+      suffix: .html
+    #出现错误时, 直接抛出异常
+    throw-exception-if-no-handler-found: true
+    static-path-pattern: /**
+  aop:
+    proxy-target-class: true
+  profiles:
+    active: prod
 
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/stu?serverTimezone=Asia/Shanghai&useAffectedRows=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
 
+mybatis-plus:
+  mapperLocations: classpath*:mapper/*.xml
+  type-aliases-package: com.example.excel.entity
+  configuration:
+    map-underscore-to-camel-case: true

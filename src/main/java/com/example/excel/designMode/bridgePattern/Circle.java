@@ -1,0 +1,18 @@
+package com.example.excel.designMode.bridgePattern;
+
+//步骤 4
+//创建实现了 Shape 抽象类的实体类。
+public class Circle extends Shape {
+    private int x, y, radius;
+
+    public Circle(int x, int y, int radius, DrawAPI drawAPI) {
+        super(drawAPI);
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+    }
+
+    public void draw() {
+        drawAPI.drawCircle(radius,x,y);
+    }
+}

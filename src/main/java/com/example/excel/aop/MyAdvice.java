@@ -15,6 +15,7 @@ import org.aspectj.lang.annotation.*;
 //@Aspect
 //@Component
 public class MyAdvice {
+
     //自己设置一个切点，管理重复代码
     @Pointcut("execution(* com.example.excel.controller.IndexController.sourceC(..))")
     public void pc(){}

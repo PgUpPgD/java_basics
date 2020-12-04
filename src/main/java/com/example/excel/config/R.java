@@ -1,7 +1,6 @@
 package com.example.excel.config;
 
 import lombok.Data;
-import org.omg.CORBA.Object;
 
 /**
  * 成功2xx
