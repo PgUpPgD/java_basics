@@ -15,7 +15,7 @@ public class ShapeCache {
     }
 
     // 对每种形状都运行数据库查询，并创建该形状
-    // shapeMap.put(shapeKey, shape);
+    // shapeMap.put(shapeKey, Shape);
     // 例如，我们要添加三种形状
     public static void loadCache() {
         Circle circle = new Circle();
