@@ -32,6 +32,12 @@ public class TestStreamApi1 {
         排序
         sorted() — 自然排序(Comparable) 按照默认的排序
         sorted() — 定制排序(Comparator com)
+        自然序降序使用Comparator提供reverseOrder()方法
+        .stream().sorted(Comparator.reverseOrder());
+        使用Comparator来对列表进行自定义升序
+        .stream().sorted(Comparator.comparing(Student::getAge));
+        使用Comparator提供reversed()方法来对列表进行自定义降序
+        .stream().sorted(Comparator.comparing(Student::getAge).reversed());
      */
     @Test
     public void test4(){

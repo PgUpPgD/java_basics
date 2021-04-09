@@ -31,7 +31,6 @@ public class JobInfoServiceImpl extends ServiceImpl<JobInfoDao, JobInfo> impleme
     }
 
     public List<JobInfo> findJobInfo(JobInfo jobInfo) {
-
         List<JobInfo> list = this.getBaseMapper().selectList(Wrappers.<JobInfo>query().lambda().eq(JobInfo::getUrl, jobInfo.getUrl()));
         return list;
     }

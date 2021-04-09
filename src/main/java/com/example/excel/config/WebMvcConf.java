@@ -3,6 +3,7 @@ package com.example.excel.config;
 import com.example.excel.interceptor.SourceInterceptor;
 import com.example.excel.interceptor.requires.PermissionInterceptor;
 import com.example.excel.interceptor.requires.RequiresPermissionScan;
+import com.example.excel.interceptor.result.ResponseResultInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -20,6 +21,9 @@ public class WebMvcConf implements WebMvcConfigurer {
     @Autowired
     private RequiresPermissionScan requiresPermissionScan;
 
+    @Autowired
+    private ResponseResultInterceptor resultInterceptor;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //被@LoginRequired注解的拦截器         一般方式
@@ -30,5 +34,8 @@ public class WebMvcConf implements WebMvcConfigurer {
             //                要注册的拦截器                   拦截的匹配路径
             registry.addInterceptor(permissionInterceptor).addPathPatterns(requiresPermissionScan.paths());
         }
+
+        //被@ResponseResult注解的拦截器         一般方式
+        registry.addInterceptor(resultInterceptor).addPathPatterns("/**");
     }
 }

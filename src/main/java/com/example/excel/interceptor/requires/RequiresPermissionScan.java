@@ -28,7 +28,6 @@ public class RequiresPermissionScan implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        System.out.println("ApplicationContextAware运行了");
         //类上被@RestController标记的
         Map<String, Object> restControllers = applicationContext.getBeansWithAnnotation(RestController.class);
         for (Map.Entry<String, Object> kv : restControllers.entrySet()) {
