@@ -156,7 +156,6 @@ public class JsoupFirstTest {
         //parent > * 查找某个父元素下的所有 直接 子元素
         Elements el7 = document.select(".city_con > *");
         System.out.println(el7.text());
-
     }
 
 

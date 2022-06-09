@@ -37,7 +37,7 @@ public class WriteTest {
 
     class TestFileUtil{
         public String getPath(){
-            return "F:/";
+            return "D:/";
         }
     }
 

@@ -18,7 +18,7 @@ public class MyLogAspect {
     // 切面最主要的就是切点，所有的故事都围绕切点发生
     // logPointCut()代表切点名称
     @Pointcut("@annotation(com.example.excel.annotation.MyLog)")
-    public void logPointCut(){};
+    public void logPointCut(){}
 
     //2.环绕通知
     @Around("logPointCut()")

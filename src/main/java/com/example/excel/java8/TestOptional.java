@@ -26,10 +26,13 @@ public class TestOptional {
 
     @Test
     public void test4(){
-        Optional<Student> student = Optional.ofNullable(new Student("路飞", 22, 175, Arrays.asList(SpecialityEnum.RUNNING, SpecialityEnum.SING)));
+        Optional<Student> student = Optional.of(
+                new Student("路飞", 22, 175, Arrays.asList(SpecialityEnum.RUNNING, SpecialityEnum.SING))
+        );
 
-        Optional<String> s = student.map((e) -> e.getName());
-        System.out.println(s.get());
+        Optional<String> s = student.map(Student::getName);
+        String a = s.orElse(null);
+        System.out.println(a);
 
         Optional<String> s1 = student.flatMap((e) -> Optional.of(e.getName()));
         System.out.println(s1.get());
@@ -37,16 +40,12 @@ public class TestOptional {
 
     @Test
     public void test3(){
-        Optional<Student> student = Optional.ofNullable(null);
-
-        if (student.isPresent()){
-            System.out.println(student.get());
-        }
+        Optional<Student> student = Optional.empty();
 
         Student student1 = student.orElse(new Student("路飞", 22, 175, Arrays.asList(SpecialityEnum.RUNNING, SpecialityEnum.SING)));
         System.out.println(student1);
 
-        Student student2 = student.orElseGet(() -> new Student());
+        Student student2 = student.orElseGet(Student::new);
         System.out.println(student2);
     }
 

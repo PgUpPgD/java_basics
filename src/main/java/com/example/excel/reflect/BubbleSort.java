@@ -13,6 +13,7 @@ public class BubbleSort {
                 }
             }
         }
+        System.out.println(num[0] + "-" + num[4]);
     }
 
 

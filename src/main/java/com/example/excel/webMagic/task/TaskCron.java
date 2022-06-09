@@ -1,6 +1,6 @@
 package com.example.excel.webMagic.task;
 
-import org.springframework.stereotype.Component;
+import org.springframework.scheduling.annotation.Scheduled;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
@@ -56,18 +56,21 @@ import us.codecraft.webmagic.proxy.SimpleProxyProvider;
  * 请求能返回地址的api  https://api.myip.com/
  *
  */
-@Component
+//@Component
 public class TaskCron implements PageProcessor{
 
-//    @Scheduled(cron = "0/5 * * * * *")
+    @Scheduled(cron = "0/10 * * * * *")
     public void process() {
         //创建下载器 Downloader
         HttpClientDownloader downloader = new HttpClientDownloader();
         //给下载器设置代理服务器
-        downloader.setProxyProvider(SimpleProxyProvider.from(new Proxy("47.96.96.94", 8090, "", "")));
+        downloader.setProxyProvider(SimpleProxyProvider.from
+                (new Proxy("1.181.48.68", 3128, "", "")));
         Spider.create(new TaskCron())
-                .addUrl("https://api.myip.com/")
+//                .addUrl("http://api.myip.com/")
+                .addUrl("https://www.eastmoney.com/")
                 .setDownloader(downloader)
+                .thread(2)
                 .run();
     }
 
@@ -76,7 +79,11 @@ public class TaskCron implements PageProcessor{
         System.out.println("page:" + page.getHtml().toString());
     }
 
-    private Site site = Site.me();
+    private Site site = Site.me()
+            .setCharset("gbk") // 设置编码
+            .setTimeOut(10*1000) // 设置超时时间
+            .setRetrySleepTime(3000) // 设置重试的间隔时间
+            .setRetryTimes(3); // 设置重试的次数
     @Override
     public Site getSite() {
         return site;
