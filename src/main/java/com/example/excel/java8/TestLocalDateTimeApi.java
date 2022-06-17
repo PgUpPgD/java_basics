@@ -52,9 +52,14 @@ public class TestLocalDateTimeApi {
         System.out.println("Minute : " + time.getMinute());
         System.out.println("Second : " + time.getSecond());
 
-        System.out.println("UTC : " + time.toEpochSecond(ZoneOffset.UTC));
-        System.out.println("+8 : " + time.toEpochSecond(ZoneOffset.of("+8")));
-        System.out.println("Date : " + new Date().getTime() / 1000);
+        System.out.println("UTC 秒: " + time.toEpochSecond(ZoneOffset.UTC));
+        System.out.println("+8 秒: " + time.toEpochSecond(ZoneOffset.of("+8")));
+        System.out.println("+8 毫秒: " + time.toInstant(ZoneOffset.of("+8")).toEpochMilli());
+        System.out.println("Date 毫秒: " + new Date().getTime());
+        System.out.println("Instant 毫秒: " + Instant.now().toEpochMilli());
+        System.out.println("纳秒: " + Instant.now().getNano());
+        System.out.println("纳秒: " + Instant.now().getNano());
+        System.out.println("纳秒没啥用 毫秒开始后面补0: " + Instant.now().getNano());
     }
 
     /**

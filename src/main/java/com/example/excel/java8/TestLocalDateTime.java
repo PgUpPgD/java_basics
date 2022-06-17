@@ -308,6 +308,7 @@ public class TestLocalDateTime {
     }
 
     //2.Instant 时间戳
+    //Instant 类还是 Java8 中 提供的新的 日期时间类LocalDateTime 与 原来的 java.util.Date 类之间转换的桥梁
     @Test
     public void test2(){
         Instant instant = Instant.now();    //默认获取 UTC 时区
@@ -317,8 +318,11 @@ public class TestLocalDateTime {
         long milli = instant.toEpochMilli();    //毫秒
         System.out.println(milli);
         System.out.println(new Date().getTime());
-        Instant instant1 = Instant.ofEpochSecond(0);   //在元年，1970年上进行时间运算
+
+        Instant instant1 = Instant.ofEpochSecond(new Date().getTime()/1000);   //在元年，1970年上进行时间运算
         System.out.println(instant1);
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant1, ZoneId.systemDefault());
+        System.out.println(localDateTime);
     }
 
     //1.LocalDate  LocalTime  LocalDateTime
