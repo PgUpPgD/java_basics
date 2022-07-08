@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.Locale;
 
@@ -77,6 +78,17 @@ public class TestLocalDateTimeApi {
         System.out.println("minusMonths : " + time.minusMonths(1));
         System.out.println("minusWeeks : " + time.minusWeeks(1));
         System.out.println("minusDays : " + time.minusDays(1));
+
+        LocalDate start = LocalDate.parse("2022-06-01", DateTimeFormatter.ISO_DATE);
+        LocalDate end = LocalDate.parse("2022-06-16", DateTimeFormatter.ISO_DATE).plusDays(1L);
+        System.out.println("start 相差 end : " + start.until(end, ChronoUnit.DAYS) + " 天");
+    }
+
+    @Test
+    public void test001(){
+        LocalDate startTime = LocalDate.parse("2022-06-01", DateTimeFormatter.ISO_DATE);
+        System.out.println(startTime);
+        System.out.println(startTime + "");
     }
 
     /**
@@ -124,6 +136,8 @@ public class TestLocalDateTimeApi {
         System.out.println("当前时区的本地时间：" + LocalDateTime.now());
         System.out.println("当前时区的本地时间：" + LocalDateTime.of(LocalDate.now(), LocalTime.now()));
         System.out.println("纽约时区的本地时间：" + LocalDateTime.now(ZoneId.of("America/New_York")));
+
+        System.out.println("当前时区的本地时间：" + LocalDateTime.of(LocalDate.now(), LocalTime.MAX));
     }
 
     /**

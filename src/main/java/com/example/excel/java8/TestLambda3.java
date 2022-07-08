@@ -1,14 +1,12 @@
 package com.example.excel.java8;
 
+import com.example.excel.entity.User;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import java.util.function.*;
 
 /**
  * Java8 内置的四大核心函数式接口
@@ -22,6 +20,16 @@ import java.util.function.Supplier;
  *      boolean test(T t);
  */
 public class TestLambda3 {
+
+    public Consumer<User> str1 = (user) -> user.setName("name");
+    public Supplier<User> str2 = () -> {
+        User user = new User();
+        user.setUserId("1");
+        return user;
+    };
+    public Function<String, User> str3 = (t) -> new User(t,t,t);
+    public Predicate<User> str4 = (user) -> user.getName().equals("1");
+    public BiFunction<String, String, User> str5 = (a, b) -> new User(a,b,b);
 
     //需求：充话费
     public void prepaid(Double dou, Consumer<Double> con){
