@@ -273,18 +273,21 @@ public class SftpUtil {
         try {
             ///wdzj/flie/customer20220624.csv
 //            ChannelSftp sftp = sftpConnection("192.168.30.97",22,"root","Rzj@2017");
-            ChannelSftp sftp = getConnect("192.168.30.111", "22", "root", "Rzj@2017");
+//            ChannelSftp sftp = getConnect("192.168.30.111", "22", "root", "Rzj@2017");
 //            String path = "/wdzj/file/CBOD/_tar/SJXF067_CBOD_SAACNACN_20220720.tar.gz";
 
-            String path = "/tmp/ptar/abc.tar.gz";
+//            String path = "/tmp/ptar/abc.tar.gz";
 //            sftp.cd("/tmp/");//进入所在路径
-            InputStream in = sftp.get(path);
-            getOkStatus(in);
+//            InputStream in = sftp.get(path);
+//            getOkStatus(in);
 
-            File file = new File("D:/a");
-            tarDir(file, "D:/a/adc.tar");
+            File file = new File("D:/a/b/c/a.txt");
+            boolean b = file.renameTo(new File("D:/a/b/c/b.txt"));
+            System.out.println(b);
+//            FileUtils.forceDelete(file);
+//            tarDir(file, "D:/a/adc.tar");
 
-            close();
+//            close();
 
 
         } catch (Exception e) {

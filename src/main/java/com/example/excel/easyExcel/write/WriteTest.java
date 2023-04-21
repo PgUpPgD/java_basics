@@ -54,7 +54,11 @@ public class WriteTest {
         String fileName = new TestFileUtil().getPath() + "simpleWrite" + System.currentTimeMillis() + ".xlsx";
         // 这里 需要指定写用哪个class去写，然后写到第一个sheet，名字为模板 然后文件流会自动关闭
         // 如果这里想使用03 则 传入excelType参数即可                                 //数据来源
-        EasyExcel.write(fileName, DemoData.class).sheet("模板").doWrite(data());
+//        EasyExcel.write(fileName, DemoData.class).sheet("模板").doWrite(data());
+
+        String templateFileName = new TestFileUtil().getPath() + "模板.xlsx";
+        EasyExcel.write(fileName, Demo1.class).withTemplate(templateFileName).sheet().doWrite(data01());
+
 
         // 写法2
 //        fileName = new TestFileUtil().getPath() + "simpleWrite" + System.currentTimeMillis() + ".xlsx";
@@ -572,6 +576,25 @@ public class WriteTest {
             data.setString("字符串" + i);
             data.setDate(new Date());
             data.setDoubleData(0.56);
+            list.add(data);
+        }
+        return list;
+    }
+
+    private List<Demo1> data01() {
+        List<Demo1> list = new ArrayList<Demo1>();
+        for (int i = 0; i < 100; i++) {
+            int b = i + 50000;
+            Demo1 data = new Demo1();
+            data.setName("机器人" + b);
+            data.setCustomerType("1");
+            data.setCustomerSource("1");
+            data.setMobilePhone(10000000000l + b + "");
+            data.setMobile("18400008888");
+            data.setCallType("1");
+            data.setGridsId("1");
+            data.setIdCard(100000000000000000l + b + "");
+            data.setContactAddressDetail("五光年外半人马星系三星环绕A星B省C市D县E生产大队" + b + "号选手");
             list.add(data);
         }
         return list;
