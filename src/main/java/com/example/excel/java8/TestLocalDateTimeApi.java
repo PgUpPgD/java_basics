@@ -89,6 +89,10 @@ public class TestLocalDateTimeApi {
         LocalDate startTime = LocalDate.parse("2022-06-01", DateTimeFormatter.ISO_DATE);
         System.out.println(startTime);
         System.out.println(startTime + "");
+
+        LocalDateTime time = LocalDateTime.now(Clock.systemUTC());
+        LocalDateTime time2 = LocalDateTime.now(Clock.systemUTC()).plusMinutes(6);
+        System.out.println("start 相差 end : " + time.until(time2, ChronoUnit.MINUTES) + " 分钟");
     }
 
     /**

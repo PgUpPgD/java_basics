@@ -17,7 +17,7 @@ public class ContextAware implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext)throws BeansException {
-        context = applicationContext;
+        ContextAware.context = applicationContext;
     }
     //获得applicationContext
     public static ApplicationContext getApplicationContext() {

@@ -583,13 +583,13 @@ public class WriteTest {
 
     private List<Demo1> data01() {
         List<Demo1> list = new ArrayList<Demo1>();
-        for (int i = 0; i < 100; i++) {
-            int b = i + 50000;
+        for (int i = 0; i < 63000; i++) {
+            int b = i + 840000;
             Demo1 data = new Demo1();
             data.setName("机器人" + b);
             data.setCustomerType("1");
             data.setCustomerSource("1");
-            data.setMobilePhone(10000000000l + b + "");
+            data.setMobilePhone(18600000000l + b + "");
             data.setMobile("18400008888");
             data.setCallType("1");
             data.setGridsId("1");
